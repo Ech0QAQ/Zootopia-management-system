@@ -1,0 +1,39 @@
+server:
+  port: 3000
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: zootopia-management
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/zootopia?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.zootopia.entity
+
+jwt:
+  secret: zootopia-secret-key-for-jwt-token-generation-2024-must-be-at-least-32-characters-long
+  expiration: 604800000 # 7天，单位毫秒
+
+admin:
+  username: admin
+  password: 123456
+
